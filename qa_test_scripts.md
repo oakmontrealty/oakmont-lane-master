@@ -46,3 +46,27 @@ These scripts cover core call flows, HUD performance and logging behaviours acro
   2. Save the disposition.
   3. Verify that follow‑up task is created in CRM.
 - **Expected Result:** No UI errors; follow‑up appears in tasks list; call record shows disposition and notes.
+
+
+## Test Case 6: Preflight Readiness and "Ready" Badge
+- **Scenario:** The dialer should display a "Ready" badge only after microphone permission is granted, a Twilio token is retrieved, and network metrics (RTT, jitter, packet loss) remain green for 5 seconds.
+- **Devices/Browsers:** Windows (Chrome/Edge), macOS (Chrome/Safari), iOS Safari, Android Chrome.
+- **Network Conditions:** Stable network (office LAN, 5G).
+- **Steps:**
+  1. Open the `/dialer` page in the CRM.
+  2. Deny microphone permission when prompted; verify that the "Ready" badge does not appear.
+  3. Grant microphone permission and wait for the token to be retrieved.
+  4. Observe HUD bars for 5 seconds and confirm all metrics stay in the green range.
+  5. Confirm that the "Ready" badge appears and remains while metrics are green; simulate packet loss or jitter spikes and confirm the badge disappears.
+- **Expected Result:** The "Ready" badge appears only when all metrics are green and disappears immediately when any metric turns amber/red.
+
+## Test Case 7: HUD Tooltip Suggestions
+- **Scenario:** When network metrics degrade, the HUD should display context‑sensitive tooltips with recommended actions.
+- **Devices/Browsers:** Windows (Chrome), macOS (Safari), Android Chrome.
+- **Network Conditions:** Introduced jitter spikes or packet loss.
+- **Steps:**
+  1. Start a call and verify HUD bars are green.
+  2. Use a network shaping tool to introduce jitter (e.g., 80 ms) or packet loss (e.g., 5 %).
+  3. Observe the HUD tooltip and note any guidance provided (e.g., "Move closer to router", "Switch to wired headset").
+  4. Return network conditions to normal and confirm the tooltip disappears.
+- **Expected Result:** The HUD displays appropriate tooltips when metrics are amber/red and clears them when metrics return to green.
