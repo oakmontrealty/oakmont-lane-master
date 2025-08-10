@@ -65,8 +65,42 @@ These scripts cover core call flows, HUD performance and logging behaviours acro
 - **Devices/Browsers:** Windows (Chrome), macOS (Safari), Android Chrome.
 - **Network Conditions:** Introduced jitter spikes or packet loss.
 - **Steps:**
-  1. Start a call and verify HUD bars are green.
-  2. Use a network shaping tool to introduce jitter (e.g., 80 ms) or packet loss (e.g., 5 %).
-  3. Observe the HUD tooltip and note any guidance provided (e.g., "Move closer to router", "Switch to wired headset").
-  4. Return network conditions to normal and confirm the tooltip disappears.
+  1. Start a call and verify HUD bars
+  2. 
+  are green.
+  3. Use a network shaping tool to introduce jitter (e.g., 80 ms) or packet loss (e.g., 5 %).
+  4. Observe the HUD tooltip and note any guidance provided (e.g., "Move closer to router", "Switch to wired headset").
+  5. Return network conditions to normal and confirm the t
+  6.
+  7. ooltip disappears.
 - **Expected Result:** The HUD displays appropriate tooltips when metrics are amber/red and clears them when metrics return to green.
+
+## Test Case 8: AI Summary Accuracy
+- **Scenario:** Evaluate the quality and completeness of AI-generated call summaries.
+- **Devices/Browsers:** Windows (Chrome), macOS (Safari), iOS Safari, Android Chrome.
+- **Network Conditions:** Stable network connection.
+- **Steps:**
+  1. Place a call and conduct a conversation with specific points to be summarized.
+  2. End the call and wait for the AI summary to appear.
+  3. Review the AI-generated summary for accuracy, completeness, and correct tagging.
+- **Expected Result:** AI summary correctly captures key discussion points, names, action items, and any call disposition notes.
+
+## Test Case 9: Multi-Agent Campaign Flow
+- **Scenario:** Ensure call routing and HUD performance during multi-agent outbound campaigns.
+- **Devices/Browsers:** Windows (Chrome), macOS (Chrome), iOS Safari, Android Chrome.
+- **Network Conditions:** Stable network; simulate moderate call load.
+- **Steps:**
+  1. Launch a campaign with multiple agents logged into the dialer.
+  2. Monitor call assignment, queue behavior, and HUD metrics for each agent.
+  3. Perform dispositions and follow-ups after each call.
+- **Expected Result:** Calls are evenly distributed; HUD metrics update per agent; call logs and dispositions recorded without race conditions.
+
+## Test Case 10: CRM Integration and Follow-up Task Creation
+- **Scenario:** Validate CRM integration for follow-up tasks and record syncing.
+- **Devices/Browsers:** Windows (Edge), macOS (Safari), iOS Safari, Android Chrome.
+- **Network Conditions:** Stable network connection.
+- **Steps:**
+  1. After completing a call, select a disposition that triggers a follow-up task.
+  2. Verify that a corresponding task is created in the CRM with correct due date and assignee.
+  3. Check that call notes and AI summary are attached to the CRM record.
+- **Expected Result:** Follow-up task appears in the CRM with appropriate metadata, and call notes and summaries are attached correctly.
